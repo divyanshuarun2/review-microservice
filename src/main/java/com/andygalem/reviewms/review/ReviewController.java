@@ -14,14 +14,15 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<List<Review>> getAllreview(@RequestParam Long companyId){
         return new ResponseEntity<>(reviewService.getAllreviews(companyId), HttpStatus.OK);
 
     }
 
-    @PostMapping("")
-    public ResponseEntity<String> createReview(@RequestParam Long companyId, @RequestBody Review review){
+    @PostMapping()
+    public ResponseEntity<String> createReview(@RequestParam Long companyId,
+                                               @RequestBody Review review){
         boolean isCreated= reviewService.createReview(companyId,review);
         if(isCreated){
             return ResponseEntity.ok("Review for company ID:"+companyId+" is created");
